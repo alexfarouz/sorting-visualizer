@@ -28,7 +28,7 @@ export default class SortingVisualizer extends React.Component{
         // Generate number of bars based on screen width
         for(let i = 0; i < window.screen.width/4.5; i++){
             // Generate height of bars based off screen height
-            array.push(randInt(5,window.screen.height - 300));
+            array.push(randInt(5,window.screen.height - 275));
         }
         this.setState({array});
         this.changeArrayBarColor('red');
