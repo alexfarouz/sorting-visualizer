@@ -1,7 +1,5 @@
-//import logo from './logo.svg';
 import React from 'react';
 import SortingVisualizer from './main/SortingVisualizer';
-import Navbar from './components/Navbar'
 import './App.css';
 
 function App() {
