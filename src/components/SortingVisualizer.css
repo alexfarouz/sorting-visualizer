@@ -1,0 +1,45 @@
+.array-container{
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 97px;
+    right: 97px;
+    height: 895px;
+}
+
+.array-bar{
+    position: center;
+    width: 2px;
+    height: 30px;
+    display: inline-block;
+    margin: 0 1px;
+}
+
+.button {
+    margin: 0 20px;
+    width: 137px;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center; /* This will vertically align your sliders if they have different heights */
+    justify-content: space-around; /* This will add some space around your sliders */
+}
+
+#slider-label {
+    color: white;
+    margin-right: 45px;
+    position: relative;
+    bottom: 8px;
+}
+
+#slider-label span {
+    color: white;
+    
+    position: absolute;
+    bottom: 0;
+    margin-left: 2px;
+    
+}

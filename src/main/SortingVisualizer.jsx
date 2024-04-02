@@ -1,7 +1,7 @@
 import React from "react";
-import './SortingVisualizer.css'
-import {getMergeSortAnimations} from '../SortingAlgorithms/mergeSort.js'
-import Slider from '../slider.jsx';
+import '../components/SortingVisualizer.css'
+import {getMergeSortAnimations} from '../algorithms/mergeSort.js'
+import Slider from '../components/slider.jsx';
 
 const COLOR_1 = 'red';
 const COLOR_2 = 'white';
@@ -13,11 +13,12 @@ export default class SortingVisualizer extends React.Component{
             array: [],
             animationSpeed: 1,
         };
+        
+        this.numBars = Math.floor(window.screen.width/4.5);
         this.buttonRef = React.createRef();
         this.genButton = React.createRef();
-        this.sliderRef = React.createRef();
     }
-
+    
     componentDidMount(){
         this.resetArray();
     }
@@ -26,7 +27,7 @@ export default class SortingVisualizer extends React.Component{
     resetArray(){
         const array = [];
         // Generate number of bars based on screen width
-        for(let i = 0; i < window.screen.width/4.5; i++){
+        for(let i = 0; i < this.numBars; i++){
             // Generate height of bars based off screen height
             array.push(randInt(5,window.screen.height - 275));
         }
@@ -105,27 +106,41 @@ export default class SortingVisualizer extends React.Component{
         this.setState({ animationSpeed: speed });
     };
 
+    setNumBars = (bars) => {
+        this.numBars = bars;
+    }
+
     render() {
         const {array} = this.state;
 
         return (
            <div className="array-container">
+                <div>
                 {array.map((value, i) => (
                     <div 
                         className="array-bar" 
                         key={i}
                         style={{
                             backgroundColor: COLOR_1,
-                            height: `${value}px`
+                            height: `${value}px`,
+                            width: `${(426/this.numBars)*2}px`,
+                            
                         }}></div>
                 ))}
-                <button class="button" ref={this.buttonRef} onClick={() => this.resetArray()}>Generate New Array</button>
-                <button class="button" ref={this.genButton} onClick={() => this.mergeSort()}>Merge Sort</button>
-                <button class="button" onClick={() => this.quickSort()}>Quick Sort</button>
-                <button class="button" onClick={() => this.heapSort()}>Heap Sort</button>
-                <button class="button" onClick={() => this.bubbleSort()}>Bubble Sort</button>
-                <button class="button" onClick={() => this.testAlgos()}>Test Sorting</button>
-                <Slider value={this.state.animationSpeed} onChange={this.setAnimationSpeed} />
+                </div>
+                <div>
+                    <button class="button" ref={this.buttonRef} onClick={() => this.resetArray()}>Generate New Array</button>
+                    <button class="button" ref={this.genButton} onClick={() => this.mergeSort()}>Merge Sort</button>
+                    <button class="button" onClick={() => this.quickSort()}>Quick Sort</button>
+                    <button class="button" onClick={() => this.heapSort()}>Heap Sort</button>
+                    <button class="button" onClick={() => this.bubbleSort()}>Bubble Sort</button>
+                    <button class="button" onClick={() => this.testAlgos()}>Test Sorting</button>
+                </div>
+                    
+                <div class="slider-container">
+                    <Slider label={"Speed: "} value={this.state.animationSpeed} onChange={this.setAnimationSpeed} rangeMin={1} rangeMax={100} units={"ms"}/>
+                    <Slider label={"Number of Bars: "} value={this.numBars} onChange={this.setNumBars} rangeMin={10} rangeMax={426}/>
+                </div>
            </div>
         );
     }

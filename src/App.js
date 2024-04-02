@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import React from 'react';
-import SortingVisualizer from './SortingVisualizer/SortingVisualizer';
+import SortingVisualizer from './main/SortingVisualizer';
 import Navbar from './components/Navbar'
 import './App.css';
 
