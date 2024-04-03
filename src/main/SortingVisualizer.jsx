@@ -134,7 +134,7 @@ export default class SortingVisualizer extends React.Component{
             this.setState({ array: sortedArray });
             this.changeArrayBarColor('#8A2BE2'); // Final color change to indicate completion
             this.enableButtons();
-        }, animations.length * animationDuration + animationDuration + 5);
+        }, animations.length * animationDuration + 10);
     }
     
     bubbleSort() {
