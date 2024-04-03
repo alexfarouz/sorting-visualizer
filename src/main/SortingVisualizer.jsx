@@ -16,7 +16,7 @@ export default class SortingVisualizer extends React.Component{
             array: [],
         };
         this.animationSpeed = 1;
-        this.numBars = Math.floor(window.screen.width/4.5);
+        this.numBars = Math.floor(window.screen.width/6);
         this.mergeButton = React.createRef();
         this.genButton = React.createRef();
         this.quickButton = React.createRef();
@@ -242,7 +242,7 @@ export default class SortingVisualizer extends React.Component{
                     
                 <div class="slider-container">
                     <Slider label={"Speed: "} value={this.animationSpeed} onChange={this.setAnimationSpeed} rangeMin={1} rangeMax={99} units={"ms"}/>
-                    <Slider label={"Number of Bars: "} value={this.numBars} onChange={this.setNumBars} rangeMin={10} rangeMax={426} units={""}/>
+                    <Slider label={"Number of Bars: "} value={this.numBars} onChange={this.setNumBars} rangeMin={10} rangeMax={320} units={""}/>
                 </div>
            </div>
         );
