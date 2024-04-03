@@ -101,44 +101,40 @@ export default class SortingVisualizer extends React.Component{
     
     heapSort() {
         this.disableButtons();
-    
         const animations = getHeapSortAnimations(this.state.array);
-        let animationDuration = this.animationSpeed;
-        
+        const arrayBars = document.getElementsByClassName('array-bar');
+        const animationDuration = this.animationSpeed;
+    
         animations.forEach(([type, indexOne, indexTwo], i) => {
-            const arrayBars = document.getElementsByClassName('array-bar');
-    
-            // Set timeout for the color change to indicate comparison/swap
             setTimeout(() => {
-                const color = type === "compare" ? COLOR_2 : COLOR_1; // Use COLOR_2 for comparison
-                arrayBars[indexOne].style.backgroundColor = color;
-                if (indexTwo !== undefined) arrayBars[indexTwo].style.backgroundColor = color;
-            }, i * animationDuration);
+                // Handle the comparison/swap animations
+                if (type === "compare") {
+                    // Temporarily highlight bars being compared
+                    arrayBars[indexOne].style.backgroundColor = COLOR_2;
+                    if (indexTwo !== undefined) arrayBars[indexTwo].style.backgroundColor = COLOR_2;
+                } else if (type === "swap") {
+                    // Swap the percentage heights of bars
+                    let tempHeight = arrayBars[indexOne].style.height; // These are already in '%'
+                    arrayBars[indexOne].style.height = arrayBars[indexTwo].style.height;
+                    arrayBars[indexTwo].style.height = tempHeight;
+                }
     
-            // If it's a swap, additionally switch the heights
-            if (type === "swap") {
+                // Schedule to revert colors back to original after a brief moment
                 setTimeout(() => {
-                    const heightOne = arrayBars[indexOne].style.height;
-                    const heightTwo = arrayBars[indexTwo].style.height;
-                    arrayBars[indexOne].style.height = heightTwo;
-                    arrayBars[indexTwo].style.height = heightOne;
-                }, i * animationDuration + animationDuration / 2); // Swap halfway through the interval
-            }
-    
-            // Set another timeout to revert the color back after the comparison/swap is visually processed
-            setTimeout(() => {
-                arrayBars[indexOne].style.backgroundColor = COLOR_1;
-                if (indexTwo !== undefined) arrayBars[indexTwo].style.backgroundColor = COLOR_1;
-            }, (i + 1) * animationDuration);
+                    arrayBars[indexOne].style.backgroundColor = COLOR_1;
+                    if (indexTwo !== undefined) arrayBars[indexTwo].style.backgroundColor = COLOR_1;
+                }, animationDuration / 3); // Adjust as needed for visual clarity
+            }, i * animationDuration);
         });
     
-        // After all animations, update the state and UI as previously described
+        // After all animations, ensure bars are updated and buttons re-enabled
         setTimeout(() => {
-            const finalArray = Array.from(document.getElementsByClassName('array-bar'))
-                                   .map(bar => parseInt(bar.style.height, 10));
-            this.setState({ array: finalArray }, this.enableButtons);
-            this.changeArrayBarColor('#8A2BE2'); // Indicate completion
-        }, animations.length * animationDuration);
+            // Correctly capturing the final sorted state is essential here
+            const sortedArray = Array.from(arrayBars).map(bar => parseFloat(bar.style.height) * 8.5); // Convert back to your array value format
+            this.setState({ array: sortedArray });
+            this.changeArrayBarColor('#8A2BE2'); // Final color change to indicate completion
+            this.enableButtons();
+        }, animations.length * animationDuration + animationDuration + 5);
     }
     
     bubbleSort() {
@@ -181,9 +177,7 @@ export default class SortingVisualizer extends React.Component{
         };
     
         executeAnimationStep(); // Start the animation process
-    }
-    
-    
+    }    
 
     enableButtons(){ // Enable buttons for use
         this.mergeButton.current.disabled = false;

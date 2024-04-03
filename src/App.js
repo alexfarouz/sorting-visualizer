@@ -5,7 +5,11 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <nav class="navbar">Sorting Algorithm Visualizer</nav>
+      <nav className="navbar">
+        <a href="/" style={{ display: 'flex', alignItems: 'center', color: 'inherit', textDecoration: 'none', fontWeight: 'bold' }}>
+          Sorting Algorithm Visualizer
+        </a>
+      </nav>
       <SortingVisualizer />
     </div>
   );
