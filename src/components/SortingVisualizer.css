@@ -2,9 +2,10 @@
     background-color: black;
     position: absolute;
     bottom: 0;
-    left: 97px;
-    right: 97px;
-    height: 895px;
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    height: 95%;
 }
 
 /* Aligns array bars to center and bottom of div */
@@ -12,13 +13,12 @@
     display: fixed;
     align-content: end; /* Pushes items to the bottom */
     justify-content: center; /* Centers items horizontally */
-    height: 810px;
+    height: 90%;
 }
 
 .array-bar{
     position: center;
     width: 2px;
-    height: 30px;
     display: inline-block;
     margin: 0 1px;
 }
@@ -45,9 +45,7 @@
 
 #slider-label span {
     color: white;
-    
     position: absolute;
     bottom: 0;
     margin-left: 2px;
-    
 }
