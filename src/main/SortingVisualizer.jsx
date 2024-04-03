@@ -227,7 +227,7 @@ export default class SortingVisualizer extends React.Component{
                             key={i}
                             style={{
                                 backgroundColor: COLOR_1,
-                                height: `${value}px`,
+                                height: `${value/8.5}%`,
                                 width: `${(426/this.numBars)*2}px`,   
                         }}/>
                     ))}
