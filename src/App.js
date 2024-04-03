@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <nav className="navbar">
-        <a href="/" style={{ display: 'flex', alignItems: 'center', color: 'inherit', textDecoration: 'none', fontWeight: 'bold' }}>
+        <a href={`${process.env.PUBLIC_URL}/`} style={{ display: 'flex', alignItems: 'center', color: 'inherit', textDecoration: 'none', fontWeight: 'bold' }}>
           Sorting Algorithm Visualizer
         </a>
       </nav>
