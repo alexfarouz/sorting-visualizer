@@ -16,7 +16,7 @@ export default class SortingVisualizer extends React.Component{
             array: [],
         };
         this.animationSpeed = 1;
-        this.numBars = Math.floor(window.screen.width/6);
+        this.numBars = Math.floor(window.screen.width/8);
         this.mergeButton = React.createRef();
         this.genButton = React.createRef();
         this.quickButton = React.createRef();
@@ -242,7 +242,7 @@ export default class SortingVisualizer extends React.Component{
                     
                 <div class="slider-container">
                     <Slider label={"Speed: "} value={this.animationSpeed} onChange={this.setAnimationSpeed} rangeMin={1} rangeMax={99} units={"ms"}/>
-                    <Slider label={"Number of Bars: "} value={this.numBars} onChange={this.setNumBars} rangeMin={10} rangeMax={320} units={""}/>
+                    <Slider label={"Number of Bars: "} value={this.numBars} onChange={this.setNumBars} rangeMin={10} rangeMax={window.screen.width/8} units={""}/>
                 </div>
            </div>
         );
@@ -252,12 +252,3 @@ export default class SortingVisualizer extends React.Component{
 function randInt(min, max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
-
-/*function arrIsEqual(arr1, arr2){
-    if(arr1.length !== arr2.length)return false;
-    for(let i = 0; i < arr1.length; i++){
-        // Return
-        if(arr1[i] !== arr2[i]) return false;
-    }
-    return true;
-}*/
